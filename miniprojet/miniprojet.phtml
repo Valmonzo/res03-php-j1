@@ -1,0 +1,116 @@
+<?php
+
+$students = [
+    [
+        "firstName" => "James",
+        "lastName" => "Fields",
+        "grades" => [12, 11, 15],
+        "average" => -1
+    ],
+    [
+        "firstName" => "Richard",
+        "lastName" => "Stein",
+        "grades" => [18, 12, 13],
+        "average" => -1
+    ],
+    [
+        "firstName" => "Mark",
+        "lastName" => "Hartoff",
+        "grades" => [9, 11, 10],
+        "average" => -1
+    ],
+    [
+        "firstName" => "Thomas",
+        "lastName" => "Nestle",
+        "grades" => [9, 8, 5],
+        "average" => -1
+    ],
+    [
+        "firstName" => "Jeremy",
+        "lastName" => "Brent",
+        "grades" => [18, 15, 16],
+        "average" => -1
+    ]
+];
+
+
+function average(array $arr) : float {
+    $total = 0;
+
+    foreach($arr as $key) {
+        $total += $key;
+    }
+
+
+    return  round($total / count($arr), 1);
+}
+
+
+function color(float $average) : string {
+    if($average < 10) {
+        return "red";
+    }
+    else if($average >= 10 && $average <= 13 ) {
+        return "orange";
+    }
+    else {
+        return "green";
+    }
+}
+
+?>
+
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Titre</title>
+    <meta name="title" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="referrer" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:image" content="">
+    <meta charset="utf-8">
+    <title>Miniprojet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+</head>
+<body id="bulletin">
+    <header>
+    </header>
+    <main>
+        <?php foreach($students as $student) { ?>
+        <article class="<?= color(average($student["grades"])); ?>" >
+            <header>
+                <h1>
+                <?= "{$student["firstName"]} {$student["lastName"]}" ?>
+                </h1>
+            </header>
+            <section>
+                <h2>Notes : </h2>
+                <?php foreach($student["grades"] as $grade) { ?>
+                <ul>
+                    <li><?= $grade ?></li>
+
+                </ul>
+                <?php } ?>
+            </section>
+            <footer>
+                <h3>Moyenne des notes de l'étudiant : <?= average($student["grades"]); ?></h3>
+            </footer>
+        </article>
+        <?php } ?>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
